@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: user/repo
+  repo: jfbxl2025/sveltia-skin-care
 
 media_folder: /static/media
 public_folder: /media
@@ -9,6 +9,7 @@ collections:
   - name: products
     label: Products
     folder: /content/products
+    summary: "{{name}}"
     format: json
     identifier_field: UUID
     fields:
@@ -22,9 +23,10 @@ collections:
       - name: tags
         label: Tags
         widget: relation
+        multiple: true
         collection: tags
         value_field: slug
-        display_fields: [id, label]
+        display_fields: [name]
         search_fields: [id, label]
   - name: brands
     label: Brands
@@ -49,6 +51,7 @@ collections:
     folder: /content/tags
     format: json
     identifier_field: UUID
+    summary: "{{label}}"
     fields:
       - { label: UUID, name: UUID, widget: uuid, use_b32_encoding: true }
       - { label: ID, name: id, widget: number, required: false, readonly: true }
