@@ -1,0 +1,55 @@
+backend:
+  name: github
+  repo: user/repo
+
+media_folder: /static/media
+public_folder: /media
+
+collections:
+  - name: products
+    label: Products
+    folder: /content/products
+    format: json
+    identifier_field: UUID
+    fields:
+      - { label: UUID, name: UUID, widget: uuid, use_b32_encoding: true }
+      - { label: ID, name: id, widget: number, required: false, readonly: true }
+      - { label: SKU, name: sku, widget: string, required: false, readonly: true }
+      - { label: Name, name: name, widget: string }
+      - { label: Short Description, name: short_description, widget: string, required: false }
+      - { label: Description, name: description, widget: markdown, required: false }
+      - { label: Image, name: image, widget: object, required: false, fields: [{ name: src }, { name: alt }] }
+      - name: tags
+        label: Tags
+        widget: relation
+        collection: tags
+        value_field: slug
+        display_fields: [id, label]
+        search_fields: [id, label]
+  - name: brands
+    label: Brands
+    folder: /content/brands
+    format: json
+    identifier_field: UUID
+    fields:
+      - { label: UUID, name: UUID, widget: uuid, use_b32_encoding: true }
+      - { label: ID, name: id, widget: number, required: false, readonly: true }
+      - { label: Name, name: name, widget: string }
+  - name: categories
+    label: Categories
+    folder: /content/categories
+    format: json
+    identifier_field: UUID
+    fields:
+      - { label: UUID, name: UUID, widget: uuid, use_b32_encoding: true }
+      - { label: ID, name: id, widget: number, required: false, readonly: true }
+      - { label: Name, name: name, widget: string }
+  - name: tags
+    label: Tags
+    folder: /content/tags
+    format: json
+    identifier_field: UUID
+    fields:
+      - { label: UUID, name: UUID, widget: uuid, use_b32_encoding: true }
+      - { label: ID, name: id, widget: number, required: false, readonly: true }
+      - { label: Name, name: name, widget: string }
